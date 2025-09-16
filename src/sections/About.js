@@ -13,9 +13,10 @@ const About = () => {
     <section id="about" className="section-padding bg-white dark:bg-gray-900">
       <div className="container-max">
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-2">
             About Me
           </h2>
+          <p className="text-sm text-primary-600 dark:text-primary-400 mb-3">Cloud Engineer (main focus) • Web Developer & IT Technician (side gigs)</p>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
             Passionate about building scalable cloud solutions and driving digital transformation through innovative technology.
           </p>
@@ -30,11 +31,12 @@ const About = () => {
                 <User className="h-16 w-16 text-white" />
               </div>
               
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">{personalInfo.name}</h3>
-              <p className="text-primary-600 font-semibold mb-4">{personalInfo.title}</p>
+              <h3 className="text-2xl font-bold text-gray-900 mb-1">{personalInfo.name}</h3>
+              <p className="text-primary-600 font-semibold">{personalInfo.title}</p>
+              <p className="text-xs text-gray-600 mt-1">Also: Web Developer & IT Technician (side gigs)</p>
               
               {/* Contact Info */}
-              <div className="space-y-3 mb-6">
+              <div className="space-y-3 mb-6 mt-4">
                 <div className="flex items-center justify-center space-x-2 text-gray-600">
                   <MapPin className="h-4 w-4" />
                   <span className="text-sm">{personalInfo.location}</span>
@@ -74,13 +76,33 @@ const About = () => {
               </p>
             </div>
 
+            {/* Side Gigs */}
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+              <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Side Gigs</h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <h5 className="font-semibold text-gray-800 dark:text-gray-200 mb-1">Web Developer</h5>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm">
+                    Building modern, responsive websites with React, Tailwind CSS, and basic Node.js backends. Focus on clean UI and performance.
+                  </p>
+                </div>
+                <div>
+                  <h5 className="font-semibold text-gray-800 dark:text-gray-200 mb-1">IT Technician</h5>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm">
+                    Troubleshooting hardware/software issues, setting up devices, basic networking, and helping users with day-to-day IT needs.
+                  </p>
+                </div>
+              </div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-3">Note: My main focus remains Cloud Engineering.</p>
+            </div>
+
             {/* Stats */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               {stats.map((stat, index) => (
-                <div key={index} className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 text-center">
+                <div key={index} className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 text-center">
                   <stat.icon className={`h-8 w-8 mx-auto mb-3 ${stat.color}`} />
-                  <div className="text-2xl font-bold text-gray-900 mb-1">{stat.value}</div>
-                  <div className="text-sm text-gray-600">{stat.label}</div>
+                  <div className="text-2xl font-bold text-gray-900 dark:text-white mb-1">{stat.value}</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">{stat.label}</div>
                 </div>
               ))}
             </div>
