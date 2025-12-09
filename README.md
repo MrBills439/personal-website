@@ -1,3 +1,4 @@
+README>md 
 # Cloud Engineer Portfolio
 
 A modern, responsive portfolio website built with React for showcasing cloud engineering expertise and projects.
@@ -168,9 +169,11 @@ src/
 
 ## License
 
-This project is open source and available under the [MIT License]
+
+This project is open source and available under the [MIT License](LICENSE).
 
 
 ## Support
 
 For questions or support, please open an issue in the GitHub repository.
+

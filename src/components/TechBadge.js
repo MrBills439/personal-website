@@ -43,24 +43,25 @@ const TechBadge = ({ technology, className = "" }) => {
 
       // Monitoring
       'Prometheus': 'bg-red-100 text-red-800 border-red-200',
+      'Grafana': 'bg-orange-100 text-orange-800 border-orange-200',
       'ELK Stack': 'bg-yellow-100 text-yellow-800 border-yellow-200',
       'Elasticsearch': 'bg-yellow-100 text-yellow-800 border-yellow-200',
 
       // Programming Languages
       'Python': 'bg-yellow-100 text-yellow-800 border-yellow-200',
+      'JavaScript': 'bg-yellow-100 text-yellow-800 border-yellow-200',
+      'Node.js': 'bg-green-100 text-green-800 border-green-200',
+      'Go': 'bg-blue-100 text-blue-800 border-blue-200',
+      'Bash/Shell': 'bg-gray-100 text-gray-800 border-gray-200',
       'Java': 'bg-red-100 text-red-800 border-red-200',
       'Html:CSS': 'bg-purple-100 text-purple-800 border-purple-200',
       'React': 'bg-blue-100 text-blue-800 border-blue-200',
-      'JavaScript': 'bg-yellow-100 text-yellow-800 border-yellow-200',
-      'Node.js': 'bg-green-100 text-green-800 border-green-200',
-      
 
       // Databases
       'PostgreSQL': 'bg-blue-100 text-blue-800 border-blue-200',
       'MongoDB': 'bg-green-100 text-green-800 border-green-200',
       'Redis': 'bg-red-100 text-red-800 border-red-200',
       'MySQL': 'bg-blue-100 text-blue-800 border-blue-200',
-      'DynamoDB': 'bg-orange-100 text-orange-800 border-orange-200',
 
       // Other
       'Istio': 'bg-blue-100 text-blue-800 border-blue-200',
@@ -81,7 +82,11 @@ const TechBadge = ({ technology, className = "" }) => {
   };
 
   return (
-    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${getTechColor(technology)} ${className}`}>
+    <span
+      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${getTechColor(
+        technology
+      )} ${className}`}
+    >
       {technology}
     </span>
   );
