@@ -1,0 +1,60 @@
+name: Deploy Portfolio Website
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ CHECKOUT CODE
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2️⃣ SET UP NODE TO BUILD YOUR REACT APP
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      # 3️⃣ BUILD DOCKER IMAGE
+      - name: Build Docker image
+        run: docker build -t felix439/portfolio:latest .
+
+      # 4️⃣ LOGIN TO DOCKER HUB
+      - name: Login to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.SERVER_USER }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # 5️⃣ PUSH IMAGE TO DOCKER HUB
+      - name: Push Docker image
+        run: docker push felix439/portfolio:latest
+
+      # 6️⃣ COPY SSH PRIVATE KEY INTO RUNNER
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
+
+      # 7️⃣ DEPLOY TO SERVER
+      - name: Deploy on Server
+        run: |
+          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} "
+            docker pull felix439/portfolio:latest &&
+            docker stop portfolio || true &&
+            docker rm portfolio || true &&
+            docker run -d -p 8080:80 --name portfolio felix439/portfolio:latest
+          "
